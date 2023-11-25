@@ -1,6 +1,7 @@
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
+import io.javalin.http.staticfiles.Location;
 import io.javalin.rendering.JavalinRenderer;
 import io.javalin.rendering.template.JavalinMustache;
 import org.jetbrains.annotations.NotNull;
@@ -19,8 +20,8 @@ public class Main {
 
         JavalinRenderer.register(new JavalinMustache(), ".hbs");
 
-        app.get("/", ctx -> ctx.render("src/main/hbs/index.hbs"));
-        app.get("/success", ctx -> ctx.render("src/main/hbs/index.hbs", model("message", """
+        app.get("/", ctx -> ctx.render("index.hbs"));
+        app.get("/success", ctx -> ctx.render("index.hbs", model("message", """
                     <div class="notification is-success mt-6">
                       Téléchargement en cours ! 👌\s
                     </div>
