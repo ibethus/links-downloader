@@ -1,0 +1,7 @@
+services:
+  app:
+    image: antiprismus/links-downloader:latest
+    ports:
+      - "7070:7070"
+    volumes:
+      - ./:/home/links/
