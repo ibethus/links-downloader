@@ -1,7 +1,5 @@
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import io.javalin.http.HttpStatus;
-import io.javalin.http.staticfiles.Location;
 import io.javalin.rendering.JavalinRenderer;
 import io.javalin.rendering.template.JavalinMustache;
 import org.jetbrains.annotations.NotNull;

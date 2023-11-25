@@ -32,7 +32,8 @@ public class Downloader {
         Path folderPath = Path.of(basePath, type.readableName, folder);
         links.forEach(link -> {
             try {
-                String filename = link.substring(link.lastIndexOf("/") + 1);
+                String filename = link.substring(link.lastIndexOf("/") + 1).replace("\r", "");
+                JavalinLogger.info("Téléchargement de " + filename + " en cours");
                 download(link, folderPath, filename);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -43,7 +44,6 @@ public class Downloader {
 
     private static CompletableFuture<String> download(String url, Path path, String filename) throws IOException {
         return CompletableFuture.supplyAsync(() -> {
-            JavalinLogger.info(String.format("Téléchargement du lien %s en cours vers %s", url, path));
             try {
                 Instant start = Instant.now();
                 Files.createDirectories(path);
@@ -53,7 +53,7 @@ public class Downloader {
                 fileChannel.transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
                 fileOutputStream.close();
                 Instant end = Instant.now();
-                JavalinLogger.info(String.format("Téléchargement terminé en %d s !", Duration.between(start, end).getSeconds()));
+                JavalinLogger.info(String.format("Téléchargement de %s terminé en %d s !", filename, Duration.between(start, end).getSeconds()));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
