@@ -12,10 +12,13 @@
 <div class="container has-text-centered">
     <div class="columns">
         <div class="column m-4">
-            <h1 class="title is-1">Télécharger des liens</h1>
+            <a href="/">
+                <h1 class="title is-1 mb-5">Télécharger des liens</h1>
+            </a>
             <form method="post" action="/download">
                 <label class="label" for="links">Liens</label>
-                <textarea class="textarea" id="links" name="links" placeholder="http://mon-super-film.com" required></textarea>
+                <textarea class="textarea" id="links" name="links" placeholder="http://mon-super-film.com"
+                          required></textarea>
                 <label class="label" for="folder">Dossier</label>
                 <input class="input" type="text" name="folder" id="folder" placeholder="Jaws" required/>
                 <fieldset class="control">
@@ -27,6 +30,7 @@
                 </fieldset>
                 <input class="button is-success mt-4" type="submit" value="Télécharger">
             </form>
+            {{{message}}}
         </div>
     </div>
 </div>
