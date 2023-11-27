@@ -1,5 +1,6 @@
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.staticfiles.Location;
 import io.javalin.rendering.JavalinRenderer;
 import io.javalin.rendering.template.JavalinMustache;
 import org.jetbrains.annotations.NotNull;
@@ -16,14 +17,21 @@ public class Main {
 
         Javalin app = Javalin.create().start(7070);
 
+        Javalin.create(config -> {
+            config.staticFiles.add(staticFiles -> {
+                staticFiles.directory = "/public";              // the directory where your files are located
+                staticFiles.location = Location.CLASSPATH;      // Location.CLASSPATH (jar) or Location.EXTERNAL (file system)
+            });
+        });
+
         JavalinRenderer.register(new JavalinMustache(), ".hbs");
 
-        app.get("/", ctx -> ctx.render("index.hbs"));
         app.get("/success", ctx -> ctx.render("index.hbs", model("message", """
                     <div class="notification is-success mt-6">
                       Téléchargement en cours ! 👌\s
                     </div>
                 """)));
+        app.get("/*", ctx -> ctx.render("index.hbs"));
 
         app.post("/download", ctx -> {
             ctx.future(() -> downloadAsync(ctx));
