@@ -1,4 +1,4 @@
-# Links Downloader
+# Links main.Downloader
 Ce programme propose une interface web minimaliste permettant de télécharger des liens sur un le serveur hôte.
 
 ## Param

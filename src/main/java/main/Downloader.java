@@ -1,3 +1,5 @@
+package main;
+
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.util.JavalinLogger;
 

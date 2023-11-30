@@ -21,7 +21,7 @@
         <configuration>
           <transformers>
             <transformer>
-              <mainClass>Main</mainClass>
+              <mainClass>main.Main</mainClass>
             </transformer>
           </transformers>
           <filters>
